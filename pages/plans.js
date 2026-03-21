@@ -11,11 +11,11 @@ import { ROLES } from '@/utils/constants';
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
   align-items: start;
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.lg}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.xl}) {
     grid-template-columns: repeat(2, 1fr);
   }
   @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
@@ -33,7 +33,7 @@ const PageHero = styled.div`
     font-weight: ${({ theme }) => theme.typography.fontWeight.extrabold};
     color: ${({ theme }) => theme.colors.textPrimary};
     margin: 0 0 12px;
-    background: linear-gradient(135deg, #ff3511, #ff6b35);
+    background: linear-gradient(135deg, #1aa8d4, #3535cc);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

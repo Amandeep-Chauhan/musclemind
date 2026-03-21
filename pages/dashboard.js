@@ -48,11 +48,6 @@ const Grid2Equal = styled.div`
   }
 `;
 
-const PieLabel = styled.div`
-  text-align: center;
-  margin-bottom: 8px;
-`;
-
 export default function DashboardPage() {
   const { stats, revenue, memberGrowth, planDistribution, activities } = useDashboard();
 
@@ -82,7 +77,7 @@ export default function DashboardPage() {
             value={s ? formatCurrency(s.totalRevenue) : 0}
             growth={s?.revenueGrowthPercent}
             icon={DollarSign}
-            color="#ff3511"
+            color="#f0be1f"
             loading={stats.isLoading}
           />
           <StatsCard

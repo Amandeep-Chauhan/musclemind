@@ -40,7 +40,7 @@ const SidebarWrapper = styled.aside`
   flex-direction: column;
   transition: width ${({ theme }) => theme.transitions.normal};
   z-index: ${({ theme }) => theme.zIndex.sticky};
-  overflow: hidden;
+  overflow: visible;
 `;
 
 const LogoArea = styled.div`
@@ -69,7 +69,7 @@ const LogoText = styled.span`
   font-weight: ${({ theme }) => theme.typography.fontWeight.extrabold};
   color: ${({ theme }) => theme.colors.textInverse};
   white-space: nowrap;
-  background: linear-gradient(135deg, #ff3511, #ff6b35);
+  background: linear-gradient(135deg, #1aa8d4, #3535cc);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -80,6 +80,7 @@ const Nav = styled.nav`
   padding: 12px 0;
   overflow-y: auto;
   overflow-x: hidden;
+  min-width: 0;
 `;
 
 const NavItem = styled.div`
@@ -229,8 +230,7 @@ const UserInfo = styled.div`
 const UserName = styled.div`
   font-size: ${({ theme }) => theme.typography.fontSize.xs};
   font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
-  color: ${({ theme }) => theme.colors.textInverse};
-  truncate: 1;
+  color: ${({ theme }) => theme.colors.sidebarActiveText};
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

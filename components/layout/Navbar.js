@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Sun, Moon, Bell, Menu, Search, X } from 'lucide-react';
+import { Sun, Moon, Bell, Menu } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   toggleSidebar,
@@ -61,45 +61,6 @@ const PageTitle = styled.div`
     color: ${({ theme }) => theme.colors.textSecondary};
     margin: 0;
   }
-`;
-
-const SearchBar = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
-    display: none;
-  }
-`;
-
-const SearchInput = styled.input`
-  background: ${({ theme }) => theme.colors.bgSecondary};
-  border: 1px solid ${({ theme }) => theme.colors.border};
-  border-radius: ${({ theme }) => theme.borderRadius.full};
-  padding: 8px 16px 8px 38px;
-  font-size: ${({ theme }) => theme.typography.fontSize.sm};
-  color: ${({ theme }) => theme.colors.textPrimary};
-  width: 220px;
-  transition: all ${({ theme }) => theme.transitions.fast};
-  outline: none;
-
-  &::placeholder { color: ${({ theme }) => theme.colors.textTertiary}; }
-
-  &:focus {
-    border-color: ${({ theme }) => theme.colors.brandPrimary};
-    background: ${({ theme }) => theme.colors.bgCard};
-    width: 280px;
-    box-shadow: 0 0 0 3px ${({ theme }) => theme.colors.brandPrimary}22;
-  }
-`;
-
-const SearchIcon = styled(Search)`
-  position: absolute;
-  left: 12px;
-  color: ${({ theme }) => theme.colors.textTertiary};
-  width: 15px;
-  height: 15px;
 `;
 
 const NavActions = styled.div`
@@ -291,11 +252,6 @@ export default function Navbar({ title, subtitle, sidebarCollapsed }) {
         <h1>{title || 'Dashboard'}</h1>
         {subtitle && <p>{subtitle}</p>}
       </PageTitle>
-
-      <SearchBar>
-        <SearchIcon />
-        <SearchInput placeholder="Search anything..." />
-      </SearchBar>
 
       <NavActions>
         {/* Theme Toggle */}

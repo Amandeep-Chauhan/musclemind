@@ -121,8 +121,8 @@ export const lightTheme = {
     brandGold: colorPalette.gold[500],
 
     // Borders
-    border: '#e2e8f0',
-    borderHover: '#cbd5e1',
+    border: '#b8c8d8',
+    borderHover: '#9aafc3',
     borderFocus: colorPalette.primary[500],
 
     // States
@@ -132,13 +132,13 @@ export const lightTheme = {
     info: colorPalette.semantic.info,
 
     // Sidebar
-    sidebarBg: '#0f172a',
-    sidebarText: '#94a3b8',
+    sidebarBg: '#ffffff',
+    sidebarText: '#64748b',
     sidebarActive: colorPalette.primary[500],
-    sidebarHover: '#1e293b',
-    sidebarBorder: '#1e293b',
-    sidebarIcon: '#64748b',
-    sidebarActiveText: colorPalette.white,
+    sidebarHover: '#f1f5f9',
+    sidebarBorder: '#e2e8f0',
+    sidebarIcon: '#94a3b8',
+    sidebarActiveText: colorPalette.primary[700],
 
     // Stats cards
     statCard1: '#e2f5fc',

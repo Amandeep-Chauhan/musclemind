@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Search, Plus, Filter, MoreHorizontal, Edit, Trash2, Eye } from 'lucide-react';
+import { Search, Plus, Edit, Trash2 } from 'lucide-react';
 import Table from '@/components/common/Table';
 import Button from '@/components/common/Button';
 import Input from '@/components/common/Input';
 import { StatusBadge, PlanBadge } from '@/components/common/Badge';
-import { formatDate, formatPercent } from '@/utils/formatters';
+import { formatDate } from '@/utils/formatters';
 import MemberForm from './MemberForm';
+import MemberDetailModal from './MemberDetailModal';
 
 const Header = styled.div`
   display: flex;
@@ -25,7 +26,7 @@ const Filters = styled.div`
 `;
 
 const Select = styled.select`
-  padding: 8px 12px;
+  padding: 8px 36px 8px 12px;
   background: ${({ theme }) => theme.colors.bgCard};
   border: 1.5px solid ${({ theme }) => theme.colors.border};
   border-radius: ${({ theme }) => theme.borderRadius.md};
@@ -33,9 +34,21 @@ const Select = styled.select`
   font-size: ${({ theme }) => theme.typography.fontSize.sm};
   cursor: pointer;
   outline: none;
-  transition: border-color ${({ theme }) => theme.transitions.fast};
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  transition: border-color ${({ theme }) => theme.transitions.fast},
+              box-shadow ${({ theme }) => theme.transitions.fast};
 
-  &:focus { border-color: ${({ theme }) => theme.colors.brandPrimary}; }
+  &:focus {
+    border-color: ${({ theme }) => theme.colors.brandPrimary};
+    box-shadow: 0 0 0 3px ${({ theme }) => theme.colors.brandPrimary}22;
+  }
+
+  &:hover:not(:focus) {
+    border-color: ${({ theme }) => theme.colors.borderHover};
+  }
 `;
 
 const AvatarCell = styled.div`
@@ -54,8 +67,13 @@ const Avatar = styled.img`
 
 const MemberName = styled.div`
   font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
-  color: ${({ theme }) => theme.colors.textPrimary};
+  color: ${({ theme }) => theme.colors.brandPrimary};
   font-size: ${({ theme }) => theme.typography.fontSize.sm};
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const MemberEmail = styled.div`
@@ -124,7 +142,7 @@ const columns = (onEdit, onDelete, onView) => [
       <AvatarCell>
         <Avatar src={row.avatar} alt={row.name} />
         <div>
-          <MemberName>{row.name}</MemberName>
+          <MemberName onClick={() => onView(row)}>{row.name}</MemberName>
           <MemberEmail>{row.email}</MemberEmail>
         </div>
       </AvatarCell>
@@ -173,7 +191,6 @@ const columns = (onEdit, onDelete, onView) => [
     sortable: false,
     render: (_, row) => (
       <ActionMenu>
-        <ActionBtn onClick={() => onView(row)} title="View"><Eye /></ActionBtn>
         <ActionBtn onClick={() => onEdit(row)} title="Edit"><Edit /></ActionBtn>
         <ActionBtn $danger onClick={() => onDelete(row)} title="Delete"><Trash2 /></ActionBtn>
       </ActionMenu>
@@ -184,6 +201,7 @@ const columns = (onEdit, onDelete, onView) => [
 export default function MemberList({ members, loading, filters, onFilterChange }) {
   const [showForm, setShowForm] = useState(false);
   const [editMember, setEditMember] = useState(null);
+  const [viewMember, setViewMember] = useState(null);
 
   const handleEdit = (member) => {
     setEditMember(member);
@@ -197,7 +215,7 @@ export default function MemberList({ members, loading, filters, onFilterChange }
   };
 
   const handleView = (member) => {
-    // Could navigate to member detail page
+    setViewMember(member);
   };
 
   return (
@@ -244,6 +262,12 @@ export default function MemberList({ members, loading, filters, onFilterChange }
         isOpen={showForm}
         onClose={() => { setShowForm(false); setEditMember(null); }}
         member={editMember}
+      />
+
+      <MemberDetailModal
+        isOpen={!!viewMember}
+        onClose={() => setViewMember(null)}
+        member={viewMember}
       />
     </div>
   );

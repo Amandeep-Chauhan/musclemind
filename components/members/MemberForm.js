@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 import Modal from '@/components/common/Modal';
@@ -34,17 +34,29 @@ const Label = styled.label`
 
 const Select = styled.select`
   width: 100%;
-  padding: 9px 14px;
+  padding: 9px 36px 9px 14px;
   background: ${({ theme }) => theme.colors.bgInput};
   border: 1.5px solid ${({ $error, theme }) => $error ? theme.colors.error : theme.colors.border};
   border-radius: ${({ theme }) => theme.borderRadius.md};
   color: ${({ theme }) => theme.colors.textPrimary};
   font-size: ${({ theme }) => theme.typography.fontSize.sm};
   outline: none;
-  transition: border-color ${({ theme }) => theme.transitions.fast};
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
   cursor: pointer;
+  transition: border-color ${({ theme }) => theme.transitions.fast},
+              box-shadow ${({ theme }) => theme.transitions.fast};
 
-  &:focus { border-color: ${({ theme }) => theme.colors.brandPrimary}; }
+  &:focus {
+    border-color: ${({ theme }) => theme.colors.brandPrimary};
+    box-shadow: 0 0 0 3px ${({ theme }) => theme.colors.brandPrimary}22;
+  }
+
+  &:hover:not(:focus) {
+    border-color: ${({ theme }) => theme.colors.borderHover};
+  }
 `;
 
 const ErrorText = styled.p`
@@ -53,22 +65,30 @@ const ErrorText = styled.p`
   margin: 0;
 `;
 
+const DEFAULT_VALUES = {
+  name: '',
+  email: '',
+  phone: '',
+  planId: 'p1',
+  goal: '',
+  gender: 'male',
+  age: '',
+  weight: '',
+  height: '',
+};
+
 export default function MemberForm({ isOpen, onClose, member }) {
   const isEditing = !!member;
 
   const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm({
-    defaultValues: member || {
-      name: '',
-      email: '',
-      phone: '',
-      planId: 'p1',
-      goal: '',
-      gender: 'male',
-      age: '',
-      weight: '',
-      height: '',
-    },
+    defaultValues: DEFAULT_VALUES,
   });
+
+  useEffect(() => {
+    if (isOpen) {
+      reset(member || DEFAULT_VALUES);
+    }
+  }, [isOpen, member, reset]);
 
   const onSubmit = async (data) => {
     await new Promise((r) => setTimeout(r, 800)); // Simulate API call
