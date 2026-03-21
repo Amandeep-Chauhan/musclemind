@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Override some Tailwind defaults to work alongside styled-components */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure Radix UI portals render on top */
+[data-radix-portal] {
+  z-index: 9999;
+}
