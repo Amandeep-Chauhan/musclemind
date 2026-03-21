@@ -50,6 +50,7 @@ export const ROUTES = {
   MEMBERS: '/members',
   PLANS: '/plans',
   TRAINERS: '/trainers',
+  LEDGER: '/ledger',
 };
 
 // Public routes (no auth required)
@@ -69,6 +70,7 @@ export const QUERY_KEYS = {
   PLAN_BY_ID: 'plan-by-id',
   TRAINERS: 'trainers',
   TRAINER_BY_ID: 'trainer-by-id',
+  EXPENSES: 'expenses',
   ME: 'me',
 };
 

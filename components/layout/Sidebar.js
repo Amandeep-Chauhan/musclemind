@@ -7,11 +7,11 @@ import {
   Users,
   CreditCard,
   Dumbbell,
-  Settings,
   LogOut,
   ChevronLeft,
   ChevronRight,
   Zap,
+  BookOpen,
 } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -26,6 +26,7 @@ const NAV_ITEMS = [
   { label: 'Members', href: ROUTES.MEMBERS, icon: Users, roles: null },
   { label: 'Plans', href: ROUTES.PLANS, icon: CreditCard, roles: [ROLES.SUPER_ADMIN, ROLES.ADMIN] },
   { label: 'Trainers', href: ROUTES.TRAINERS, icon: Dumbbell, roles: null },
+  { label: 'Ledger', href: ROUTES.LEDGER, icon: BookOpen, roles: [ROLES.SUPER_ADMIN, ROLES.ADMIN] },
 ];
 
 const SidebarWrapper = styled.aside`
