@@ -13,6 +13,7 @@ import {
   Zap,
   BookOpen,
   Package,
+  Wallet,
 } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -29,6 +30,7 @@ const NAV_ITEMS = [
   { label: 'Trainers', href: ROUTES.TRAINERS, icon: Dumbbell, roles: null },
   { label: 'Ledger', href: ROUTES.LEDGER, icon: BookOpen, roles: [ROLES.SUPER_ADMIN, ROLES.ADMIN] },
   { label: 'Inventory', href: ROUTES.INVENTORY, icon: Package, roles: null },
+  { label: 'Payroll', href: ROUTES.PAYROLL, icon: Wallet, roles: [ROLES.SUPER_ADMIN, ROLES.ADMIN] },
 ];
 
 const SidebarWrapper = styled.aside`
