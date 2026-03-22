@@ -50,12 +50,15 @@ export const ROUTES = {
   MEMBERS: '/members',
   PLANS: '/plans',
   TRAINERS: '/trainers',
-  LEDGER: '/ledger',
+  LEDGER: '/ledger', // kept for backward compat
+  FINANCE: '/finance',
   INVENTORY: '/inventory',
   PAYROLL: '/payroll',
   LEADS: '/leads',
   PROFILE: '/profile',
   ATTENDANCE: '/attendance',
+  ACCOUNTS: '/accounts',
+
 };
 
 // Public routes (no auth required)

@@ -17,6 +17,7 @@ import {
   UserPlus,
   User,
   ClipboardCheck,
+  Calculator,
 } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleSidebarCollapse, selectSidebarCollapsed } from '@/store/slices/uiSlice';
@@ -34,7 +35,12 @@ const NAV_ITEMS = [
     roles: [ROLES.SUPER_ADMIN, ROLES.ADMIN],
   },
   { label: 'My Profile', href: ROUTES.PROFILE, icon: User, exactRoles: [ROLES.TRAINER] },
-  { label: 'Ledger', href: ROUTES.LEDGER, icon: BookOpen, roles: [ROLES.SUPER_ADMIN, ROLES.ADMIN] },
+  {
+    label: 'Finance',
+    href: ROUTES.FINANCE,
+    icon: BookOpen,
+    roles: [ROLES.SUPER_ADMIN, ROLES.ADMIN],
+  },
   { label: 'Inventory', href: ROUTES.INVENTORY, icon: Package, roles: null },
   { label: 'Payroll', href: ROUTES.PAYROLL, icon: Wallet, roles: [ROLES.SUPER_ADMIN, ROLES.ADMIN] },
   { label: 'Leads', href: ROUTES.LEADS, icon: UserPlus, roles: [ROLES.SUPER_ADMIN, ROLES.ADMIN] },
@@ -42,6 +48,12 @@ const NAV_ITEMS = [
     label: 'Attendance',
     href: ROUTES.ATTENDANCE,
     icon: ClipboardCheck,
+    roles: [ROLES.SUPER_ADMIN, ROLES.ADMIN],
+  },
+  {
+    label: 'Accounts',
+    href: ROUTES.ACCOUNTS,
+    icon: Calculator,
     roles: [ROLES.SUPER_ADMIN, ROLES.ADMIN],
   },
 ];
