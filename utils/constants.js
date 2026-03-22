@@ -54,6 +54,7 @@ export const ROUTES = {
   INVENTORY: '/inventory',
   PAYROLL: '/payroll',
   LEADS: '/leads',
+  PROFILE: '/profile',
 };
 
 // Public routes (no auth required)

@@ -15,12 +15,10 @@ import {
   Package,
   Wallet,
   UserPlus,
+  User,
 } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  toggleSidebarCollapse,
-  selectSidebarCollapsed,
-} from '@/store/slices/uiSlice';
+import { toggleSidebarCollapse, selectSidebarCollapsed } from '@/store/slices/uiSlice';
 import { useAuth } from '@/hooks/useAuth';
 import { ROUTES, ROLES } from '@/utils/constants';
 
@@ -28,7 +26,13 @@ const NAV_ITEMS = [
   { label: 'Dashboard', href: ROUTES.DASHBOARD, icon: LayoutDashboard, roles: null },
   { label: 'Members', href: ROUTES.MEMBERS, icon: Users, roles: null },
   { label: 'Plans', href: ROUTES.PLANS, icon: CreditCard, roles: [ROLES.SUPER_ADMIN, ROLES.ADMIN] },
-  { label: 'Trainers', href: ROUTES.TRAINERS, icon: Dumbbell, roles: null },
+  {
+    label: 'Trainers',
+    href: ROUTES.TRAINERS,
+    icon: Dumbbell,
+    roles: [ROLES.SUPER_ADMIN, ROLES.ADMIN],
+  },
+  { label: 'My Profile', href: ROUTES.PROFILE, icon: User, exactRoles: [ROLES.TRAINER] },
   { label: 'Ledger', href: ROUTES.LEDGER, icon: BookOpen, roles: [ROLES.SUPER_ADMIN, ROLES.ADMIN] },
   { label: 'Inventory', href: ROUTES.INVENTORY, icon: Package, roles: null },
   { label: 'Payroll', href: ROUTES.PAYROLL, icon: Wallet, roles: [ROLES.SUPER_ADMIN, ROLES.ADMIN] },
@@ -201,7 +205,10 @@ const CollapseBtn = styled.button`
     border-color: ${({ theme }) => theme.colors.brandPrimary};
   }
 
-  svg { width: 12px; height: 12px; }
+  svg {
+    width: 12px;
+    height: 12px;
+  }
 `;
 
 const SidebarBottom = styled.div`
@@ -218,7 +225,9 @@ const UserCard = styled.div`
   cursor: pointer;
   transition: background ${({ theme }) => theme.transitions.fast};
 
-  &:hover { background: ${({ theme }) => theme.colors.sidebarHover}; }
+  &:hover {
+    background: ${({ theme }) => theme.colors.sidebarHover};
+  }
 `;
 
 const UserAvatar = styled.img`
@@ -261,8 +270,13 @@ const LogoutBtn = styled.button`
   transition: color ${({ theme }) => theme.transitions.fast};
   flex-shrink: 0;
 
-  &:hover { color: ${({ theme }) => theme.colors.error}; }
-  svg { width: 16px; height: 16px; }
+  &:hover {
+    color: ${({ theme }) => theme.colors.error};
+  }
+  svg {
+    width: 16px;
+    height: 16px;
+  }
 `;
 
 export default function Sidebar() {
@@ -273,9 +287,10 @@ export default function Sidebar() {
 
   const isActive = (href) => router.pathname === href || router.pathname.startsWith(href + '/');
 
-  const visibleItems = NAV_ITEMS.filter(
-    (item) => !item.roles || item.roles.some((r) => can(r))
-  );
+  const visibleItems = NAV_ITEMS.filter((item) => {
+    if (item.exactRoles) return item.exactRoles.includes(user?.role);
+    return !item.roles || item.roles.some((r) => can(r));
+  });
 
   return (
     <SidebarWrapper $collapsed={collapsed}>
@@ -317,7 +332,10 @@ export default function Sidebar() {
       <SidebarBottom>
         <UserCard>
           <UserAvatar
-            src={user?.avatar || `https://ui-avatars.com/api/?name=${user?.name || 'U'}&background=ff3511&color=fff`}
+            src={
+              user?.avatar ||
+              `https://ui-avatars.com/api/?name=${user?.name || 'U'}&background=ff3511&color=fff`
+            }
             alt={user?.name}
           />
           {!collapsed && (
