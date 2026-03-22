@@ -28,6 +28,7 @@ yarn-error.log*
 
 # Large original media files
 public/gym-bg-original.mp4
+public/gym-bg-1080.mp4
 
 # Vercel
 .vercel
