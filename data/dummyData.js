@@ -68,6 +68,12 @@ export const dummyMembers = [
     totalSessions: 48,
     attendanceRate: 92,
     nextSession: '2025-07-15',
+    subscriptionHistory: [
+      { plan: '1 Month', startDate: '2024-01-10', endDate: '2024-02-10', amount: 600 },
+      { plan: '3 Months', startDate: '2024-02-10', endDate: '2024-05-10', amount: 1500 },
+      { plan: '6 Months', startDate: '2024-05-10', endDate: '2024-11-10', amount: 3000 },
+      { plan: '6 Months', startDate: '2024-11-10', endDate: '2025-05-10', amount: 3000 },
+    ],
   },
   {
     id: 'm2',
@@ -90,6 +96,11 @@ export const dummyMembers = [
     totalSessions: 32,
     attendanceRate: 88,
     nextSession: '2025-07-16',
+    subscriptionHistory: [
+      { plan: '3 Months', startDate: '2024-02-15', endDate: '2024-05-15', amount: 1500 },
+      { plan: '6 Months', startDate: '2024-05-15', endDate: '2024-11-15', amount: 3000 },
+      { plan: '6 Months', startDate: '2024-11-15', endDate: '2026-04-15', amount: 3000 },
+    ],
   },
   {
     id: 'm3',
@@ -112,6 +123,11 @@ export const dummyMembers = [
     totalSessions: 20,
     attendanceRate: 65,
     nextSession: null,
+    subscriptionHistory: [
+      { plan: '1 Month', startDate: '2024-03-01', endDate: '2024-04-01', amount: 600 },
+      { plan: '3 Months', startDate: '2024-04-01', endDate: '2024-07-01', amount: 1500 },
+      { plan: '3 Months', startDate: '2024-07-01', endDate: '2024-10-01', amount: 1500 },
+    ],
   },
   {
     id: 'm4',
@@ -134,6 +150,11 @@ export const dummyMembers = [
     totalSessions: 60,
     attendanceRate: 97,
     nextSession: '2025-07-15',
+    subscriptionHistory: [
+      { plan: '6 Months', startDate: '2024-04-22', endDate: '2024-10-22', amount: 3000 },
+      { plan: '12 Months', startDate: '2024-10-22', endDate: '2025-10-22', amount: 5500 },
+      { plan: '6 Months', startDate: '2025-10-22', endDate: '2026-04-10', amount: 3000 },
+    ],
   },
   {
     id: 'm5',
@@ -156,6 +177,9 @@ export const dummyMembers = [
     totalSessions: 2,
     attendanceRate: 100,
     nextSession: '2025-07-17',
+    subscriptionHistory: [
+      { plan: '3 Months', startDate: '2025-07-01', endDate: '2025-10-01', amount: 1500 },
+    ],
   },
   {
     id: 'm6',
@@ -178,6 +202,12 @@ export const dummyMembers = [
     totalSessions: 15,
     attendanceRate: 78,
     nextSession: '2025-07-18',
+    subscriptionHistory: [
+      { plan: '1 Month', startDate: '2024-11-05', endDate: '2024-12-05', amount: 600 },
+      { plan: '1 Month', startDate: '2024-12-05', endDate: '2025-01-05', amount: 600 },
+      { plan: '3 Months', startDate: '2025-01-05', endDate: '2025-04-05', amount: 1500 },
+      { plan: '3 Months', startDate: '2025-04-05', endDate: '2026-04-05', amount: 1500 },
+    ],
   },
 ];
 
@@ -1350,4 +1380,69 @@ export const dummyPayroll = [
       { id: 'ph10-6', month: 'Mar 2026', payDate: '2026-03-05', baseSalary: 12000, ptFees: 0, netPay: 12000, leaveDays: 1, status: 'paid', method: 'UPI' },
     ],
   },
+];
+
+// ── Attendance Logs ─────────────────────────────────────────────────────────
+export const dummyAttendance = [
+  // Staff attendance — today (2026-03-22)
+  { id: 'att1', personId: 't1', name: 'Sam Rivera', type: 'staff', role: 'Senior Trainer', avatar: 'https://ui-avatars.com/api/?name=Sam+Rivera&background=22c55e&color=fff', date: '2026-03-22', checkIn: '06:00', checkOut: '18:00', status: 'present', hours: 12 },
+  { id: 'att2', personId: 't2', name: 'Maya Chen', type: 'staff', role: 'Yoga & Pilates Trainer', avatar: 'https://ui-avatars.com/api/?name=Maya+Chen&background=6a1b9a&color=fff', date: '2026-03-22', checkIn: '07:15', checkOut: '15:10', status: 'present', hours: 7.9 },
+  { id: 'att3', personId: 't3', name: 'Darius King', type: 'staff', role: 'Boxing & MMA Trainer', avatar: 'https://ui-avatars.com/api/?name=Darius+King&background=c62828&color=fff', date: '2026-03-22', checkIn: '10:05', checkOut: null, status: 'present', hours: null },
+  { id: 'att4', personId: 'u2', name: 'Jordan Lee', type: 'staff', role: 'Admin Manager', avatar: 'https://ui-avatars.com/api/?name=Jordan+Lee&background=0078d4&color=fff', date: '2026-03-22', checkIn: '08:30', checkOut: '17:30', status: 'present', hours: 9 },
+  { id: 'att5', personId: 'e5', name: 'Priya Mehta', type: 'staff', role: 'Receptionist', avatar: 'https://ui-avatars.com/api/?name=Priya+Mehta&background=f59e0b&color=fff', date: '2026-03-22', checkIn: '08:00', checkOut: '16:00', status: 'present', hours: 8 },
+  { id: 'att6', personId: 'e6', name: 'Ravi Kumar', type: 'staff', role: 'Maintenance Staff', avatar: 'https://ui-avatars.com/api/?name=Ravi+Kumar&background=1b5e20&color=fff', date: '2026-03-22', checkIn: null, checkOut: null, status: 'absent', hours: 0 },
+  { id: 'att7', personId: 'e7', name: 'Anita Sharma', type: 'staff', role: 'Marketing Executive', avatar: 'https://ui-avatars.com/api/?name=Anita+Sharma&background=e91e63&color=fff', date: '2026-03-22', checkIn: '09:00', checkOut: '13:00', status: 'half-day', hours: 4 },
+  { id: 'att8', personId: 'e10', name: 'Arjun Nair', type: 'staff', role: 'Cleaning Staff', avatar: 'https://ui-avatars.com/api/?name=Arjun+Nair&background=1aa8d4&color=fff', date: '2026-03-22', checkIn: '06:30', checkOut: '14:30', status: 'present', hours: 8 },
+  // Staff — yesterday (2026-03-21)
+  { id: 'att9', personId: 't1', name: 'Sam Rivera', type: 'staff', role: 'Senior Trainer', avatar: 'https://ui-avatars.com/api/?name=Sam+Rivera&background=22c55e&color=fff', date: '2026-03-21', checkIn: '06:00', checkOut: '18:00', status: 'present', hours: 12 },
+  { id: 'att10', personId: 't2', name: 'Maya Chen', type: 'staff', role: 'Yoga & Pilates Trainer', avatar: 'https://ui-avatars.com/api/?name=Maya+Chen&background=6a1b9a&color=fff', date: '2026-03-21', checkIn: '07:00', checkOut: '15:00', status: 'present', hours: 8 },
+  { id: 'att11', personId: 't3', name: 'Darius King', type: 'staff', role: 'Boxing & MMA Trainer', avatar: 'https://ui-avatars.com/api/?name=Darius+King&background=c62828&color=fff', date: '2026-03-21', checkIn: null, checkOut: null, status: 'absent', hours: 0 },
+  { id: 'att12', personId: 'u2', name: 'Jordan Lee', type: 'staff', role: 'Admin Manager', avatar: 'https://ui-avatars.com/api/?name=Jordan+Lee&background=0078d4&color=fff', date: '2026-03-21', checkIn: '08:30', checkOut: '17:00', status: 'present', hours: 8.5 },
+  // Member attendance — today
+  { id: 'att13', personId: 'm1', name: 'Marcus Thompson', type: 'member', plan: 'Elite', avatar: 'https://ui-avatars.com/api/?name=Marcus+Thompson&background=c62828&color=fff', date: '2026-03-22', checkIn: '06:15', checkOut: '08:00', status: 'present', hours: 1.75 },
+  { id: 'att14', personId: 'm2', name: 'Priya Sharma', type: 'member', plan: 'Pro', avatar: 'https://ui-avatars.com/api/?name=Priya+Sharma&background=6a1b9a&color=fff', date: '2026-03-22', checkIn: '07:30', checkOut: '09:15', status: 'present', hours: 1.75 },
+  { id: 'att15', personId: 'm4', name: 'Aisha Johnson', type: 'member', plan: 'Elite', avatar: 'https://ui-avatars.com/api/?name=Aisha+Johnson&background=1b5e20&color=fff', date: '2026-03-22', checkIn: '05:45', checkOut: '07:30', status: 'present', hours: 1.75 },
+  { id: 'att16', personId: 'm6', name: 'Fatima Al-Hassan', type: 'member', plan: 'Starter', avatar: 'https://ui-avatars.com/api/?name=Fatima+Al-Hassan&background=f59e0b&color=fff', date: '2026-03-22', checkIn: '17:00', checkOut: null, status: 'present', hours: null },
+  { id: 'att17', personId: 'm5', name: 'Noah Williams', type: 'member', plan: 'Pro', avatar: 'https://ui-avatars.com/api/?name=Noah+Williams&background=0078d4&color=fff', date: '2026-03-22', checkIn: '16:30', checkOut: '18:00', status: 'present', hours: 1.5 },
+  // Member attendance — yesterday
+  { id: 'att18', personId: 'm1', name: 'Marcus Thompson', type: 'member', plan: 'Elite', avatar: 'https://ui-avatars.com/api/?name=Marcus+Thompson&background=c62828&color=fff', date: '2026-03-21', checkIn: '06:00', checkOut: '07:45', status: 'present', hours: 1.75 },
+  { id: 'att19', personId: 'm4', name: 'Aisha Johnson', type: 'member', plan: 'Elite', avatar: 'https://ui-avatars.com/api/?name=Aisha+Johnson&background=1b5e20&color=fff', date: '2026-03-21', checkIn: '06:00', checkOut: '08:00', status: 'present', hours: 2 },
+  { id: 'att20', personId: 'm2', name: 'Priya Sharma', type: 'member', plan: 'Pro', avatar: 'https://ui-avatars.com/api/?name=Priya+Sharma&background=6a1b9a&color=fff', date: '2026-03-21', checkIn: '18:00', checkOut: '19:30', status: 'present', hours: 1.5 },
+  // ── February 2026 — Staff ──
+  { id: 'att21', personId: 't1', name: 'Sam Rivera', type: 'staff', role: 'Senior Trainer', avatar: 'https://ui-avatars.com/api/?name=Sam+Rivera&background=22c55e&color=fff', date: '2026-02-02', checkIn: '06:00', checkOut: '18:00', status: 'present', hours: 12 },
+  { id: 'att22', personId: 't1', name: 'Sam Rivera', type: 'staff', role: 'Senior Trainer', avatar: 'https://ui-avatars.com/api/?name=Sam+Rivera&background=22c55e&color=fff', date: '2026-02-05', checkIn: '06:00', checkOut: '17:30', status: 'present', hours: 11.5 },
+  { id: 'att23', personId: 't1', name: 'Sam Rivera', type: 'staff', role: 'Senior Trainer', avatar: 'https://ui-avatars.com/api/?name=Sam+Rivera&background=22c55e&color=fff', date: '2026-02-10', checkIn: null, checkOut: null, status: 'absent', hours: 0 },
+  { id: 'att24', personId: 't1', name: 'Sam Rivera', type: 'staff', role: 'Senior Trainer', avatar: 'https://ui-avatars.com/api/?name=Sam+Rivera&background=22c55e&color=fff', date: '2026-02-15', checkIn: '06:30', checkOut: '18:00', status: 'present', hours: 11.5 },
+  { id: 'att25', personId: 't2', name: 'Maya Chen', type: 'staff', role: 'Yoga & Pilates Trainer', avatar: 'https://ui-avatars.com/api/?name=Maya+Chen&background=6a1b9a&color=fff', date: '2026-02-03', checkIn: '07:00', checkOut: '15:00', status: 'present', hours: 8 },
+  { id: 'att26', personId: 't2', name: 'Maya Chen', type: 'staff', role: 'Yoga & Pilates Trainer', avatar: 'https://ui-avatars.com/api/?name=Maya+Chen&background=6a1b9a&color=fff', date: '2026-02-08', checkIn: '07:00', checkOut: '11:00', status: 'half-day', hours: 4 },
+  { id: 'att27', personId: 't2', name: 'Maya Chen', type: 'staff', role: 'Yoga & Pilates Trainer', avatar: 'https://ui-avatars.com/api/?name=Maya+Chen&background=6a1b9a&color=fff', date: '2026-02-14', checkIn: '07:15', checkOut: '15:00', status: 'present', hours: 7.75 },
+  { id: 'att28', personId: 't3', name: 'Darius King', type: 'staff', role: 'Boxing & MMA Trainer', avatar: 'https://ui-avatars.com/api/?name=Darius+King&background=c62828&color=fff', date: '2026-02-04', checkIn: '10:00', checkOut: '20:00', status: 'present', hours: 10 },
+  { id: 'att29', personId: 't3', name: 'Darius King', type: 'staff', role: 'Boxing & MMA Trainer', avatar: 'https://ui-avatars.com/api/?name=Darius+King&background=c62828&color=fff', date: '2026-02-12', checkIn: null, checkOut: null, status: 'absent', hours: 0 },
+  { id: 'att30', personId: 'u2', name: 'Jordan Lee', type: 'staff', role: 'Admin Manager', avatar: 'https://ui-avatars.com/api/?name=Jordan+Lee&background=0078d4&color=fff', date: '2026-02-03', checkIn: '08:30', checkOut: '17:30', status: 'present', hours: 9 },
+  { id: 'att31', personId: 'u2', name: 'Jordan Lee', type: 'staff', role: 'Admin Manager', avatar: 'https://ui-avatars.com/api/?name=Jordan+Lee&background=0078d4&color=fff', date: '2026-02-10', checkIn: '09:00', checkOut: '17:00', status: 'present', hours: 8 },
+  { id: 'att32', personId: 'e5', name: 'Priya Mehta', type: 'staff', role: 'Receptionist', avatar: 'https://ui-avatars.com/api/?name=Priya+Mehta&background=f59e0b&color=fff', date: '2026-02-05', checkIn: '08:00', checkOut: '16:00', status: 'present', hours: 8 },
+  { id: 'att33', personId: 'e6', name: 'Ravi Kumar', type: 'staff', role: 'Maintenance Staff', avatar: 'https://ui-avatars.com/api/?name=Ravi+Kumar&background=1b5e20&color=fff', date: '2026-02-06', checkIn: '07:00', checkOut: '15:00', status: 'present', hours: 8 },
+  { id: 'att34', personId: 'e6', name: 'Ravi Kumar', type: 'staff', role: 'Maintenance Staff', avatar: 'https://ui-avatars.com/api/?name=Ravi+Kumar&background=1b5e20&color=fff', date: '2026-02-13', checkIn: null, checkOut: null, status: 'absent', hours: 0 },
+  // ── February 2026 — Members ──
+  { id: 'att35', personId: 'm1', name: 'Marcus Thompson', type: 'member', plan: 'Elite', avatar: 'https://ui-avatars.com/api/?name=Marcus+Thompson&background=c62828&color=fff', date: '2026-02-03', checkIn: '06:00', checkOut: '07:30', status: 'present', hours: 1.5 },
+  { id: 'att36', personId: 'm1', name: 'Marcus Thompson', type: 'member', plan: 'Elite', avatar: 'https://ui-avatars.com/api/?name=Marcus+Thompson&background=c62828&color=fff', date: '2026-02-05', checkIn: '06:15', checkOut: '08:00', status: 'present', hours: 1.75 },
+  { id: 'att37', personId: 'm1', name: 'Marcus Thompson', type: 'member', plan: 'Elite', avatar: 'https://ui-avatars.com/api/?name=Marcus+Thompson&background=c62828&color=fff', date: '2026-02-10', checkIn: '06:00', checkOut: '07:45', status: 'present', hours: 1.75 },
+  { id: 'att38', personId: 'm2', name: 'Priya Sharma', type: 'member', plan: 'Pro', avatar: 'https://ui-avatars.com/api/?name=Priya+Sharma&background=6a1b9a&color=fff', date: '2026-02-04', checkIn: '17:30', checkOut: '19:00', status: 'present', hours: 1.5 },
+  { id: 'att39', personId: 'm2', name: 'Priya Sharma', type: 'member', plan: 'Pro', avatar: 'https://ui-avatars.com/api/?name=Priya+Sharma&background=6a1b9a&color=fff', date: '2026-02-11', checkIn: '18:00', checkOut: '19:30', status: 'present', hours: 1.5 },
+  { id: 'att40', personId: 'm4', name: 'Aisha Johnson', type: 'member', plan: 'Elite', avatar: 'https://ui-avatars.com/api/?name=Aisha+Johnson&background=1b5e20&color=fff', date: '2026-02-02', checkIn: '05:45', checkOut: '07:30', status: 'present', hours: 1.75 },
+  { id: 'att41', personId: 'm4', name: 'Aisha Johnson', type: 'member', plan: 'Elite', avatar: 'https://ui-avatars.com/api/?name=Aisha+Johnson&background=1b5e20&color=fff', date: '2026-02-09', checkIn: '06:00', checkOut: '08:00', status: 'present', hours: 2 },
+  { id: 'att42', personId: 'm5', name: 'Noah Williams', type: 'member', plan: 'Pro', avatar: 'https://ui-avatars.com/api/?name=Noah+Williams&background=0078d4&color=fff', date: '2026-02-06', checkIn: '16:00', checkOut: '17:30', status: 'present', hours: 1.5 },
+  // ── January 2026 — Staff ──
+  { id: 'att43', personId: 't1', name: 'Sam Rivera', type: 'staff', role: 'Senior Trainer', avatar: 'https://ui-avatars.com/api/?name=Sam+Rivera&background=22c55e&color=fff', date: '2026-01-05', checkIn: '06:00', checkOut: '18:00', status: 'present', hours: 12 },
+  { id: 'att44', personId: 't1', name: 'Sam Rivera', type: 'staff', role: 'Senior Trainer', avatar: 'https://ui-avatars.com/api/?name=Sam+Rivera&background=22c55e&color=fff', date: '2026-01-12', checkIn: '06:00', checkOut: '17:00', status: 'present', hours: 11 },
+  { id: 'att45', personId: 't1', name: 'Sam Rivera', type: 'staff', role: 'Senior Trainer', avatar: 'https://ui-avatars.com/api/?name=Sam+Rivera&background=22c55e&color=fff', date: '2026-01-20', checkIn: '06:30', checkOut: '12:00', status: 'half-day', hours: 5.5 },
+  { id: 'att46', personId: 't2', name: 'Maya Chen', type: 'staff', role: 'Yoga & Pilates Trainer', avatar: 'https://ui-avatars.com/api/?name=Maya+Chen&background=6a1b9a&color=fff', date: '2026-01-06', checkIn: '07:00', checkOut: '15:00', status: 'present', hours: 8 },
+  { id: 'att47', personId: 't2', name: 'Maya Chen', type: 'staff', role: 'Yoga & Pilates Trainer', avatar: 'https://ui-avatars.com/api/?name=Maya+Chen&background=6a1b9a&color=fff', date: '2026-01-15', checkIn: null, checkOut: null, status: 'absent', hours: 0 },
+  { id: 'att48', personId: 't3', name: 'Darius King', type: 'staff', role: 'Boxing & MMA Trainer', avatar: 'https://ui-avatars.com/api/?name=Darius+King&background=c62828&color=fff', date: '2026-01-07', checkIn: '10:00', checkOut: '20:00', status: 'present', hours: 10 },
+  { id: 'att49', personId: 'u2', name: 'Jordan Lee', type: 'staff', role: 'Admin Manager', avatar: 'https://ui-avatars.com/api/?name=Jordan+Lee&background=0078d4&color=fff', date: '2026-01-08', checkIn: '08:30', checkOut: '17:30', status: 'present', hours: 9 },
+  // ── January 2026 — Members ──
+  { id: 'att50', personId: 'm1', name: 'Marcus Thompson', type: 'member', plan: 'Elite', avatar: 'https://ui-avatars.com/api/?name=Marcus+Thompson&background=c62828&color=fff', date: '2026-01-06', checkIn: '06:00', checkOut: '07:30', status: 'present', hours: 1.5 },
+  { id: 'att51', personId: 'm1', name: 'Marcus Thompson', type: 'member', plan: 'Elite', avatar: 'https://ui-avatars.com/api/?name=Marcus+Thompson&background=c62828&color=fff', date: '2026-01-13', checkIn: '06:15', checkOut: '08:00', status: 'present', hours: 1.75 },
+  { id: 'att52', personId: 'm4', name: 'Aisha Johnson', type: 'member', plan: 'Elite', avatar: 'https://ui-avatars.com/api/?name=Aisha+Johnson&background=1b5e20&color=fff', date: '2026-01-08', checkIn: '06:00', checkOut: '08:00', status: 'present', hours: 2 },
+  { id: 'att53', personId: 'm2', name: 'Priya Sharma', type: 'member', plan: 'Pro', avatar: 'https://ui-avatars.com/api/?name=Priya+Sharma&background=6a1b9a&color=fff', date: '2026-01-10', checkIn: '17:30', checkOut: '19:00', status: 'present', hours: 1.5 },
 ];

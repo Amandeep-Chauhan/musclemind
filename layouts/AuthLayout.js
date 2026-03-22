@@ -1,6 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { Zap } from 'lucide-react';
+import { darkTheme } from '@/styles/theme';
 
 const Wrapper = styled.div`
   min-height: 100vh;
@@ -82,22 +83,24 @@ const BrandName = styled.h1`
 
 export default function AuthLayout({ children }) {
   return (
-    <Wrapper>
-      <VideoBg autoPlay muted loop playsInline>
-        <source src="/gym-bg.mp4" type="video/mp4" />
-      </VideoBg>
-      <Overlay />
+    <ThemeProvider theme={darkTheme}>
+      <Wrapper>
+        <VideoBg autoPlay muted loop playsInline>
+          <source src="/gym-bg.mp4" type="video/mp4" />
+        </VideoBg>
+        <Overlay />
 
-      <FormCard>
-        <BrandHeader>
-          <LogoIcon>
-            <Zap size={20} color="white" fill="white" />
-          </LogoIcon>
-          <BrandName>MuscleMind</BrandName>
-        </BrandHeader>
+        <FormCard>
+          <BrandHeader>
+            <LogoIcon>
+              <Zap size={20} color="white" fill="white" />
+            </LogoIcon>
+            <BrandName>MuscleMind</BrandName>
+          </BrandHeader>
 
-        {children}
-      </FormCard>
-    </Wrapper>
+          {children}
+        </FormCard>
+      </Wrapper>
+    </ThemeProvider>
   );
 }

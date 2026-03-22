@@ -38,8 +38,9 @@ const Select = styled.select`
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 12px center;
-  transition: border-color ${({ theme }) => theme.transitions.fast},
-              box-shadow ${({ theme }) => theme.transitions.fast};
+  transition:
+    border-color ${({ theme }) => theme.transitions.fast},
+    box-shadow ${({ theme }) => theme.transitions.fast};
 
   &:focus {
     border-color: ${({ theme }) => theme.colors.brandPrimary};
@@ -100,11 +101,15 @@ const ActionBtn = styled.button`
   transition: all ${({ theme }) => theme.transitions.fast};
 
   &:hover {
-    background: ${({ $danger, theme }) => $danger ? `${theme.colors.error}22` : theme.colors.bgHover};
-    color: ${({ $danger, theme }) => $danger ? theme.colors.error : theme.colors.textPrimary};
+    background: ${({ $danger, theme }) =>
+      $danger ? `${theme.colors.error}22` : theme.colors.bgHover};
+    color: ${({ $danger, theme }) => ($danger ? theme.colors.error : theme.colors.textPrimary)};
   }
 
-  svg { width: 14px; height: 14px; }
+  svg {
+    width: 14px;
+    height: 14px;
+  }
 `;
 
 const AttendanceBar = styled.div`
@@ -126,9 +131,7 @@ const Fill = styled.div`
   height: 100%;
   width: ${({ $pct }) => $pct}%;
   background: ${({ $pct, theme }) =>
-    $pct >= 85 ? theme.colors.success :
-    $pct >= 60 ? theme.colors.warning :
-    theme.colors.error};
+    $pct >= 85 ? theme.colors.success : $pct >= 60 ? theme.colors.warning : theme.colors.error};
   border-radius: 3px;
   transition: width 0.5s ease;
 `;
@@ -153,12 +156,6 @@ const columns = (onEdit, onDelete, onView) => [
     label: 'Plan',
     sortable: true,
     render: (val) => <PlanBadge plan={val} />,
-  },
-  {
-    key: 'status',
-    label: 'Status',
-    sortable: true,
-    render: (val) => <StatusBadge status={val} />,
   },
   {
     key: 'joinDate',
@@ -186,13 +183,23 @@ const columns = (onEdit, onDelete, onView) => [
     ),
   },
   {
+    key: 'status',
+    label: 'Status',
+    sortable: true,
+    render: (val) => <StatusBadge status={val} />,
+  },
+  {
     key: 'actions',
     label: 'Actions',
     sortable: false,
     render: (_, row) => (
       <ActionMenu>
-        <ActionBtn onClick={() => onEdit(row)} title="Edit"><Edit /></ActionBtn>
-        <ActionBtn $danger onClick={() => onDelete(row)} title="Delete"><Trash2 /></ActionBtn>
+        <ActionBtn onClick={() => onEdit(row)} title="Edit">
+          <Edit />
+        </ActionBtn>
+        <ActionBtn $danger onClick={() => onDelete(row)} title="Delete">
+          <Trash2 />
+        </ActionBtn>
       </ActionMenu>
     ),
   },
@@ -230,11 +237,13 @@ export default function MemberList({ members, loading, filters, onFilterChange }
             fullWidth={false}
             style={{ width: 220 }}
           />
-          <Select value={filters.status} onChange={(e) => onFilterChange({ status: e.target.value })}>
+          <Select
+            value={filters.status}
+            onChange={(e) => onFilterChange({ status: e.target.value })}
+          >
             <option value="all">All Status</option>
             <option value="active">Active</option>
             <option value="inactive">Inactive</option>
-            <option value="pending">Pending</option>
           </Select>
           <Select value={filters.plan} onChange={(e) => onFilterChange({ plan: e.target.value })}>
             <option value="all">All Plans</option>
@@ -244,7 +253,13 @@ export default function MemberList({ members, loading, filters, onFilterChange }
           </Select>
         </Filters>
 
-        <Button icon={<Plus />} onClick={() => { setEditMember(null); setShowForm(true); }}>
+        <Button
+          icon={<Plus />}
+          onClick={() => {
+            setEditMember(null);
+            setShowForm(true);
+          }}
+        >
           Add Member
         </Button>
       </Header>
@@ -260,7 +275,10 @@ export default function MemberList({ members, loading, filters, onFilterChange }
 
       <MemberForm
         isOpen={showForm}
-        onClose={() => { setShowForm(false); setEditMember(null); }}
+        onClose={() => {
+          setShowForm(false);
+          setEditMember(null);
+        }}
         member={editMember}
       />
 
