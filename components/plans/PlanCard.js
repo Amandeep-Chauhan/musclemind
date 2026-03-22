@@ -1,23 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Check, X, Users } from 'lucide-react';
-import Button from '@/components/common/Button';
+import { Check, X, Users, Edit } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 
 const Card = styled.div`
   background: ${({ theme }) => theme.colors.bgCard};
-  border: 1px solid ${({ $popular, $color, theme }) => $popular ? `${$color}55` : theme.colors.border};
+  border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: 20px;
   overflow: hidden;
   position: relative;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.08),
+    0 1px 2px rgba(0, 0, 0, 0.05);
 
   &:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+    box-shadow:
+      0 6px 16px rgba(0, 0, 0, 0.1),
+      0 2px 4px rgba(0, 0, 0, 0.06);
     border-color: ${({ $color }) => `${$color}66`};
   }
 `;
@@ -51,26 +57,48 @@ const CardHeader = styled.div`
   }
 `;
 
-const PopularBadge = styled.div`
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  background: white;
+const EditPlanBtn = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  padding: 10px;
+  font-size: ${({ theme }) => theme.typography.fontSize.sm};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
   color: ${({ $color }) => $color};
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.4px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
-  z-index: 1;
+  background: ${({ $color }) => `${$color}10`};
+  border: 1.5px solid ${({ $color }) => `${$color}30`};
+  border-radius: ${({ theme }) => theme.borderRadius.md};
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: ${({ $color }) => `${$color}20`};
+    border-color: ${({ $color }) => `${$color}50`};
+  }
+
+  svg {
+    width: 14px;
+    height: 14px;
+  }
 `;
 
-const PlanEmoji = styled.div`
-  font-size: 38px;
-  margin-bottom: 10px;
+const MemberCount = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 10px;
   position: relative;
   z-index: 1;
+
+  svg {
+    width: 14px;
+    height: 14px;
+  }
 `;
 
 const PlanName = styled.h3`
@@ -80,15 +108,6 @@ const PlanName = styled.h3`
   margin: 0 0 6px;
   position: relative;
   z-index: 1;
-`;
-
-const PlanDesc = styled.p`
-  font-size: ${({ theme }) => theme.typography.fontSize.sm};
-  color: rgba(255, 255, 255, 0.85);
-  margin: 0;
-  position: relative;
-  z-index: 1;
-  line-height: 1.5;
 `;
 
 const CardBody = styled.div`
@@ -127,6 +146,23 @@ const Cycle = styled.span`
   margin-left: 2px;
 `;
 
+const SavingsRibbon = styled.div`
+  position: absolute;
+  top: 18px;
+  right: -35px;
+  width: 140px;
+  padding: 5px 0;
+  background: linear-gradient(135deg, #ff6b35, #e84118);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  text-align: center;
+  transform: rotate(45deg);
+  z-index: 3;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  letter-spacing: 0.3px;
+`;
+
 const FeatureList = styled.ul`
   list-style: none;
   padding: 0;
@@ -150,72 +186,32 @@ const FeatureItem = styled.li`
     width: 16px;
     height: 16px;
     flex-shrink: 0;
-    color: ${({ $excluded, $color, theme }) =>
-      $excluded ? theme.colors.textTertiary : $color};
+    color: ${({ $excluded, $color, theme }) => ($excluded ? theme.colors.textTertiary : $color)};
   }
 `;
 
 const FeatureText = styled.span`
-  text-decoration: ${({ $excluded }) => $excluded ? 'line-through' : 'none'};
+  text-decoration: ${({ $excluded }) => ($excluded ? 'line-through' : 'none')};
 `;
 
-const UsageBar = styled.div`
-  margin-top: 16px;
-  padding-top: 16px;
-  border-top: 1px solid ${({ theme }) => theme.colors.border};
-`;
-
-const UsageLabel = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
-`;
-
-const UsageTitle = styled.span`
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: ${({ theme }) => theme.typography.fontSize.xs};
-  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
-  color: ${({ theme }) => theme.colors.textSecondary};
-
-  svg { width: 13px; height: 13px; }
-`;
-
-const UsageCount = styled.span`
-  font-size: ${({ theme }) => theme.typography.fontSize.xs};
-  color: ${({ theme }) => theme.colors.textTertiary};
-`;
-
-const BarTrack = styled.div`
-  height: 6px;
-  background: ${({ theme }) => theme.colors.bgHover};
-  border-radius: 3px;
-  overflow: hidden;
-`;
-
-const BarFill = styled.div`
-  height: 100%;
-  width: ${({ $pct }) => $pct}%;
-  background: ${({ $color, $pct }) =>
-    $pct >= 90 ? '#f44040' : $pct >= 70 ? '#f0be1f' : $color};
-  border-radius: 3px;
-  transition: width 0.8s ease;
-`;
-
-export default function PlanCard({ plan }) {
+export default function PlanCard({ plan, onEdit }) {
   const { isAdmin, isSuperAdmin } = useAuth();
   const canManage = isAdmin || isSuperAdmin;
-  const usagePct = Math.round((plan.currentMembers / plan.maxMembers) * 100);
 
   return (
-    <Card $popular={plan.popular} $color={plan.color}>
+    <Card $color={plan.color}>
+      {(() => {
+        const monthlyRate = 600;
+        const months = parseInt(plan.billingCycle) || 1;
+        const savings = monthlyRate * months - plan.price;
+        if (savings <= 0) return null;
+        return <SavingsRibbon>Save ₹{savings.toLocaleString('en-IN')}</SavingsRibbon>;
+      })()}
       <CardHeader $color={plan.color}>
-        {plan.popular && <PopularBadge $color={plan.color}>⭐ Most Popular</PopularBadge>}
-        <PlanEmoji>{plan.icon}</PlanEmoji>
         <PlanName>{plan.name}</PlanName>
-        <PlanDesc>{plan.description}</PlanDesc>
+        <MemberCount>
+          <Users /> {plan.currentMembers} members enrolled
+        </MemberCount>
       </CardHeader>
 
       <CardBody>
@@ -240,24 +236,10 @@ export default function PlanCard({ plan }) {
           ))}
         </FeatureList>
 
-        <Button
-          fullWidth
-          variant={plan.popular ? 'primary' : 'outline'}
-          style={plan.popular ? {} : { borderColor: plan.color, color: plan.color }}
-        >
-          {plan.popular ? '🔥 Get Started' : 'Choose Plan'}
-        </Button>
-
-        {canManage && (
-          <UsageBar>
-            <UsageLabel>
-              <UsageTitle><Users /> Capacity</UsageTitle>
-              <UsageCount>{plan.currentMembers} / {plan.maxMembers}</UsageCount>
-            </UsageLabel>
-            <BarTrack>
-              <BarFill $pct={usagePct} $color={plan.color} />
-            </BarTrack>
-          </UsageBar>
+        {canManage && onEdit && (
+          <EditPlanBtn onClick={() => onEdit(plan)} $color={plan.color}>
+            <Edit /> Edit Plan
+          </EditPlanBtn>
         )}
       </CardBody>
     </Card>

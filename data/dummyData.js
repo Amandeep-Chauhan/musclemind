@@ -248,7 +248,7 @@ export const dummyPlans = [
   {
     id: 'p4',
     name: '12 Months',
-    price: 6500,
+    price: 5500,
     billingCycle: '12 months',
     color: '#f0be1f',
     icon: '👑',
