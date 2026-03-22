@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
-import { Eye, EyeOff, Mail, Lock, Zap } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock } from 'lucide-react';
 import AuthLayout from '@/layouts/AuthLayout';
 import Input from '@/components/common/Input';
 import Button from '@/components/common/Button';
@@ -33,11 +33,13 @@ const ForgotLink = styled.a`
   color: ${({ theme }) => theme.colors.brandPrimary};
   text-align: right;
   display: block;
-  margin-top: -8px;
+  margin-top: 6px;
   cursor: pointer;
   text-decoration: none;
 
-  &:hover { text-decoration: underline; }
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const ErrorAlert = styled.div`
@@ -61,7 +63,8 @@ const Divider = styled.div`
     white-space: nowrap;
   }
 
-  &::before, &::after {
+  &::before,
+  &::after {
     content: '';
     flex: 1;
     height: 1px;
@@ -82,7 +85,9 @@ const DemoBox = styled.div`
     margin: 2px 0;
   }
 
-  strong { color: ${({ theme }) => theme.colors.brandPrimary}; }
+  strong {
+    color: ${({ theme }) => theme.colors.brandPrimary};
+  }
 `;
 
 const SignupLink = styled.p`
@@ -95,7 +100,9 @@ const SignupLink = styled.p`
     color: ${({ theme }) => theme.colors.brandPrimary};
     font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
     text-decoration: none;
-    &:hover { text-decoration: underline; }
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `;
 
@@ -103,7 +110,11 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const { login, isLoading, error } = useAuth();
 
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     defaultValues: { email: '', password: '' },
   });
 
@@ -156,13 +167,23 @@ export default function LoginPage() {
           </Button>
         </Form>
 
-        <Divider><span>Demo credentials</span></Divider>
+        <Divider>
+          <span>Demo credentials</span>
+        </Divider>
 
         <DemoBox>
-          <p><strong>Super Admin:</strong> alex@musclemind.io</p>
-          <p><strong>Admin:</strong> jordan@musclemind.io</p>
-          <p><strong>Trainer:</strong> sam@musclemind.io</p>
-          <p><strong>Password:</strong> password123</p>
+          <p>
+            <strong>Super Admin:</strong> alex@musclemind.io
+          </p>
+          <p>
+            <strong>Admin:</strong> jordan@musclemind.io
+          </p>
+          <p>
+            <strong>Trainer:</strong> sam@musclemind.io
+          </p>
+          <p>
+            <strong>Password:</strong> password123
+          </p>
         </DemoBox>
 
         <SignupLink>
