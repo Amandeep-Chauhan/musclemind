@@ -79,7 +79,7 @@ export const dummyMembers = [
     planId: 'p2',
     status: 'active',
     joinDate: '2024-02-15',
-    expiryDate: '2025-02-15',
+    expiryDate: '2026-04-15',
     age: 24,
     gender: 'female',
     weight: '58 kg',
@@ -123,7 +123,7 @@ export const dummyMembers = [
     planId: 'p3',
     status: 'active',
     joinDate: '2024-04-22',
-    expiryDate: '2025-04-22',
+    expiryDate: '2026-04-10',
     age: 31,
     gender: 'female',
     weight: '65 kg',
@@ -167,7 +167,7 @@ export const dummyMembers = [
     planId: 'p1',
     status: 'active',
     joinDate: '2024-11-05',
-    expiryDate: '2025-11-05',
+    expiryDate: '2026-04-05',
     age: 27,
     gender: 'female',
     weight: '60 kg',
@@ -796,13 +796,13 @@ export const revenueChartData = [
 
 // ── Member Growth Chart Data ──────────────────────────────────────────────────
 export const memberGrowthData = [
-  { month: 'Jan', members: 180, active: 155 },
-  { month: 'Feb', members: 190, active: 162 },
-  { month: 'Mar', members: 205, active: 172 },
-  { month: 'Apr', members: 215, active: 180 },
-  { month: 'May', members: 222, active: 188 },
-  { month: 'Jun', members: 235, active: 196 },
-  { month: 'Jul', members: 248, active: 201 },
+  { month: 'Jan', members: 180, active: 155, newJoined: 12 },
+  { month: 'Feb', members: 190, active: 162, newJoined: 10 },
+  { month: 'Mar', members: 205, active: 172, newJoined: 15 },
+  { month: 'Apr', members: 215, active: 180, newJoined: 10 },
+  { month: 'May', members: 222, active: 188, newJoined: 7 },
+  { month: 'Jun', members: 235, active: 196, newJoined: 13 },
+  { month: 'Jul', members: 248, active: 201, newJoined: 18 },
 ];
 
 // ── Plan Distribution ─────────────────────────────────────────────────────────
