@@ -53,6 +53,19 @@ const GlobalStyles = createGlobalStyle`
     --ring: 14 100% 54%;
   }
 
+  /* ── Autofill fix for dark mode ──────────────────────────────── */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active,
+  textarea:-webkit-autofill,
+  select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px ${({ theme }) => theme.colors.bgInput || theme.colors.bgSecondary} inset !important;
+    -webkit-text-fill-color: ${({ theme }) => theme.colors.textPrimary} !important;
+    caret-color: ${({ theme }) => theme.colors.textPrimary} !important;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
   html {
     scroll-behavior: smooth;
     font-size: 16px;

@@ -46,6 +46,8 @@ export const ROUTES = {
   HOME: '/',
   LOGIN: '/login',
   SIGNUP: '/signup',
+  FORGOT_PASSWORD: '/forgot-password',
+  RESET_PASSWORD: '/reset-password',
   DASHBOARD: '/dashboard',
   MEMBERS: '/members',
   PLANS: '/plans',
@@ -58,11 +60,15 @@ export const ROUTES = {
   PROFILE: '/profile',
   ATTENDANCE: '/attendance',
   ACCOUNTS: '/accounts',
-
 };
 
 // Public routes (no auth required)
-export const PUBLIC_ROUTES = [ROUTES.LOGIN, ROUTES.SIGNUP];
+export const PUBLIC_ROUTES = [
+  ROUTES.LOGIN,
+  ROUTES.SIGNUP,
+  ROUTES.FORGOT_PASSWORD,
+  ROUTES.RESET_PASSWORD,
+];
 
 // ── Query Keys ────────────────────────────────────────────────────────────────
 export const QUERY_KEYS = {

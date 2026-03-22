@@ -159,7 +159,9 @@ export default function LoginPage() {
                 minLength: { value: 6, message: 'Minimum 6 characters' },
               })}
             />
-            <ForgotLink>Forgot password?</ForgotLink>
+            <Link href="/forgot-password" passHref legacyBehavior>
+              <ForgotLink>Forgot password?</ForgotLink>
+            </Link>
           </div>
 
           <Button type="submit" fullWidth loading={isLoading} size="lg">

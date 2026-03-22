@@ -13,7 +13,10 @@ const Label = styled.label`
   font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
   color: ${({ theme }) => theme.colors.textSecondary};
 
-  span.required { color: ${({ theme }) => theme.colors.error}; margin-left: 3px; }
+  span.required {
+    color: ${({ theme }) => theme.colors.error};
+    margin-left: 3px;
+  }
 `;
 
 const InputWrapper = styled.div`
@@ -27,8 +30,7 @@ const StyledInput = styled.input`
   padding: ${({ $hasLeft, $hasRight }) =>
     `9px ${$hasRight ? '40px' : '14px'} 9px ${$hasLeft ? '40px' : '14px'}`};
   background: ${({ theme }) => theme.colors.bgInput};
-  border: 1.5px solid ${({ $error, theme }) =>
-    $error ? theme.colors.error : theme.colors.border};
+  border: 1.5px solid ${({ $error, theme }) => ($error ? theme.colors.error : theme.colors.border)};
   border-radius: ${({ theme }) => theme.borderRadius.md};
   color: ${({ theme }) => theme.colors.textPrimary};
   font-size: ${({ theme }) => theme.typography.fontSize.sm};
@@ -43,9 +45,7 @@ const StyledInput = styled.input`
   &:focus {
     border-color: ${({ $error, theme }) =>
       $error ? theme.colors.error : theme.colors.brandPrimary};
-    box-shadow: 0 0 0 3px ${({ $error, theme }) =>
-      $error ? `${theme.colors.error}22` : `${theme.colors.brandPrimary}22`};
-    background: ${({ theme }) => theme.colors.bgCard};
+    box-shadow: none;
   }
 
   &:disabled {
@@ -59,8 +59,7 @@ const StyledTextarea = styled.textarea`
   width: 100%;
   padding: 10px 14px;
   background: ${({ theme }) => theme.colors.bgInput};
-  border: 1.5px solid ${({ $error, theme }) =>
-    $error ? theme.colors.error : theme.colors.border};
+  border: 1.5px solid ${({ $error, theme }) => ($error ? theme.colors.error : theme.colors.border)};
   border-radius: ${({ theme }) => theme.borderRadius.md};
   color: ${({ theme }) => theme.colors.textPrimary};
   font-size: ${({ theme }) => theme.typography.fontSize.sm};
@@ -70,10 +69,13 @@ const StyledTextarea = styled.textarea`
   transition: all ${({ theme }) => theme.transitions.fast};
   outline: none;
 
-  &::placeholder { color: ${({ theme }) => theme.colors.textTertiary}; }
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.textTertiary};
+  }
   &:focus {
-    border-color: ${({ $error, theme }) => $error ? theme.colors.error : theme.colors.brandPrimary};
-    box-shadow: 0 0 0 3px ${({ $error, theme }) => $error ? `${theme.colors.error}22` : `${theme.colors.brandPrimary}22`};
+    border-color: ${({ $error, theme }) =>
+      $error ? theme.colors.error : theme.colors.brandPrimary};
+    box-shadow: none;
   }
 `;
 
@@ -84,7 +86,10 @@ const IconLeft = styled.span`
   display: flex;
   align-items: center;
   pointer-events: none;
-  svg { width: 16px; height: 16px; }
+  svg {
+    width: 16px;
+    height: 16px;
+  }
 `;
 
 const IconRight = styled.span`
@@ -94,14 +99,19 @@ const IconRight = styled.span`
   display: flex;
   align-items: center;
   cursor: ${({ $clickable }) => ($clickable ? 'pointer' : 'default')};
-  svg { width: 16px; height: 16px; }
+  svg {
+    width: 16px;
+    height: 16px;
+  }
 
-  &:hover { color: ${({ $clickable, theme }) => $clickable && theme.colors.textPrimary}; }
+  &:hover {
+    color: ${({ $clickable, theme }) => $clickable && theme.colors.textPrimary};
+  }
 `;
 
 const HelperText = styled.p`
   font-size: ${({ theme }) => theme.typography.fontSize.xs};
-  color: ${({ $error, theme }) => $error ? theme.colors.error : theme.colors.textTertiary};
+  color: ${({ $error, theme }) => ($error ? theme.colors.error : theme.colors.textTertiary)};
   margin: 0;
 `;
 
@@ -139,20 +149,14 @@ const Input = React.forwardRef(
         )}
         <InputWrapper>
           {leftIcon && <IconLeft>{leftIcon}</IconLeft>}
-          {textarea ? (
-            <StyledTextarea {...commonProps} />
-          ) : (
-            <StyledInput {...commonProps} />
-          )}
+          {textarea ? <StyledTextarea {...commonProps} /> : <StyledInput {...commonProps} />}
           {rightIcon && (
             <IconRight $clickable={!!onRightIconClick} onClick={onRightIconClick}>
               {rightIcon}
             </IconRight>
           )}
         </InputWrapper>
-        {(error || helper) && (
-          <HelperText $error={!!error}>{error || helper}</HelperText>
-        )}
+        {(error || helper) && <HelperText $error={!!error}>{error || helper}</HelperText>}
       </Wrapper>
     );
   }
